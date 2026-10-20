@@ -1,0 +1,14 @@
+{
+  "account_mode": "SINGLE",
+  "broker_redirect_uri_registered": false,
+  "authorization_user_agent": "WEBVIEW",
+  "authorities": [
+    {
+      "type": "AAD",
+      "audience": {
+        "type": "AzureADMyOrg",
+        "tenant_id": "13a8d02d-59f3-416a-8231-b3080e639cad"
+      }
+    }
+  ]
+}

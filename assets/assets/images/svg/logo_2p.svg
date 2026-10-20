@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  2P brand mark: an orange diamond with a folded/gradient lower-right facet.
+  Authored as vector so it stays crisp in the 32px app-bar slot, where the
+  wide university logo PNG was illegible.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="facet" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#C97F00"/>
+      <stop offset="100%" stop-color="#E99A00"/>
+    </linearGradient>
+  </defs>
+  <!-- Upper-left facet -->
+  <path d="M24 2 L2 24 L24 24 Z" fill="#F5B324"/>
+  <!-- Upper-right facet -->
+  <path d="M24 2 L24 24 L46 24 Z" fill="#E99A00"/>
+  <!-- Lower-left facet -->
+  <path d="M2 24 L24 24 L24 46 Z" fill="#E99A00"/>
+  <!-- Lower-right folded facet -->
+  <path d="M24 24 L46 24 L24 46 Z" fill="url(#facet)"/>
+</svg>
