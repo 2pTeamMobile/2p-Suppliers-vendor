@@ -294,6 +294,7 @@
   "go_to_login": "الذهاب إلى تسجيل الدخول",
   "loading_countries": "جارٍ تحميل الدول",
   "country_required": "يرجى اختيار الدولة",
+  "document_required": "يرجى إرفاق هذا المستند المطلوب",
   "agreement_required": "يجب الموافقة على الشروط وسياسة الخصوصية للمتابعة",
   "profile": "الملف الشخصي",
   "profile_subtitle": "بيانات تسجيل الشركة",

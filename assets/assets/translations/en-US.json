@@ -294,6 +294,7 @@
   "go_to_login": "Go to Login",
   "loading_countries": "Loading countries",
   "country_required": "Please select a country",
+  "document_required": "Please upload this required document",
   "agreement_required": "You must agree to the terms and privacy policy to continue",
   "profile": "Profile",
   "profile_subtitle": "Company registration data",
