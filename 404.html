@@ -31,8 +31,82 @@
 
   <title>2P Suppliers</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #FFA30F 0%, #D87D00 100%);
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .web-splash-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #FFA30F 0%, #D87D00 100%);
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .web-splash-logo {
+      width: 140px;
+      height: auto;
+      max-width: 80%;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+      animation: webSplashPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes webSplashPulse {
+      0%, 100% {
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.03);
+      }
+    }
+  </style>
 </head>
 <body>
+  <div id="web-splash-loader" class="web-splash-container" style="transition: opacity 0.35s ease-out;">
+    <img class="web-splash-logo" src="assets/assets/images/png/logo_white.png" alt="2P Suppliers" onerror="this.style.display='none'">
+  </div>
+  <script>
+    (function () {
+      function dismissLoader() {
+        var loader = document.getElementById('web-splash-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(function () {
+            if (loader.parentNode) loader.parentNode.removeChild(loader);
+          }, 360);
+        }
+      }
+      var observer = new MutationObserver(function (mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          for (var j = 0; j < mutations[i].addedNodes.length; j++) {
+            var node = mutations[i].addedNodes[j];
+            if (node.nodeType === 1 && (node.tagName === 'FLUTTER-VIEW' || node.className === 'flt-glass-pane' || (node.tagName && node.tagName.indexOf('FLT') === 0))) {
+              observer.disconnect();
+              dismissLoader();
+              return;
+            }
+          }
+        }
+      });
+      observer.observe(document.body, { childList: true });
+      window.addEventListener('flutter-first-frame', dismissLoader);
+      setTimeout(dismissLoader, 8000); // safety fallback
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
