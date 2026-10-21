@@ -31,8 +31,110 @@
 
   <title>2P Suppliers</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f8fafc;
+    }
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999999;
+      transition: opacity 0.35s ease-out, visibility 0.35s ease-out;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    .loading-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .loading-logo {
+      width: 130px;
+      height: auto;
+      max-height: 80px;
+      object-fit: contain;
+      margin-bottom: 28px;
+    }
+    .spinner-ring {
+      width: 38px;
+      height: 38px;
+      border: 3.5px solid #edf2f7;
+      border-top: 3.5px solid #E99A00;
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+    }
+    .loading-title {
+      margin-top: 18px;
+      margin-bottom: 4px;
+      color: #1e293b;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+    .loading-sub {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
+  <div id="loading-screen">
+    <div class="loading-box">
+      <img src="logo.png" alt="2P Suppliers" class="loading-logo" />
+      <div class="spinner-ring"></div>
+      <p class="loading-title">2P Suppliers Portal</p>
+      <p class="loading-sub">جارٍ تهيئة بوابة الموردين...</p>
+    </div>
+  </div>
+
+  <script>
+    function removeLoadingScreen() {
+      var loader = document.getElementById('loading-screen');
+      if (loader && loader.style.opacity !== '0') {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        setTimeout(function() {
+          if (loader && loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+          }
+        }, 350);
+      }
+    }
+
+    // 1. Flutter event when the first frame is rendered
+    window.addEventListener('flutter-first-frame', removeLoadingScreen);
+
+    // 2. Fallback observer for Flutter attaching <flutter-view>
+    var observer = new MutationObserver(function() {
+      if (document.querySelector('flutter-view') || document.querySelector('flt-glass-pane')) {
+        setTimeout(removeLoadingScreen, 200);
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // 3. Fallback safety timeout (15s)
+    setTimeout(removeLoadingScreen, 15000);
+  </script>
+
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
