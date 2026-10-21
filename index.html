@@ -33,6 +33,12 @@
 
   <title>2P Suppliers</title>
   <link rel="manifest" href="manifest.json?v=4">
+
+  <!-- Preload key static assets so browser caches them during bootstrapping -->
+  <link rel="preload" as="image" href="assets/assets/images/svg/2p_logo_primary.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/assets/images/png/auth_web.png" type="image/png">
+  <link rel="preload" as="image" href="assets/assets/images/svg/auth_background.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/assets/images/svg/auth_web_background.svg" type="image/svg+xml">
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
